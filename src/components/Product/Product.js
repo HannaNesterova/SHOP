@@ -1,9 +1,14 @@
 import styles from './Product.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
+import { useState } from 'react';
+
+
 
 
 const Product = props => {
+const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -20,24 +25,28 @@ const Product = props => {
         <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
-            {/* <ul className={styles.choices}>
-              {props.sizes.map((size, index) => (
-                <li key={index}><button type="button" className={index === 0 ? styles.active : ''}>{size.name}</button></li>
+             <ul className={styles.choices}>
+              {props.sizes.map((size) => (
+                <li key={size.name}>
+                  <Button type="button" 
+                    className={clsx(size.name === currentSize && styles.active)}
+                    onClick={() => setCurrentSize(size.name)}
+                    >{size.name}
+                  </Button>
+                  </li>
               ))}
-            </ul> */}
-            <ul className={styles.choices}>
-              <li><button type="button" className={styles.active}>S</button></li>
-              <li><button type="button">M</button></li>
-              <li><button type="button">L</button></li>
-              <li><button type="button">XL</button></li>
-            </ul>
+            </ul> 
           </div>
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              <li><button type="button" className={clsx(styles.colorBlack, styles.active)} /></li>
-              <li><button type="button" className={clsx(styles.colorRed)} /></li>
-              <li><button type="button" className={clsx(styles.colorWhite)} /></li>
+              <li>
+                <button type='button' className={clsx(styles.colorBlack, styles.active)}/>
+              </li>
+              <li><button type='button' className={clsx(styles.colorRed)}/>
+              </li>
+              <li><button type='button' className={clsx(styles.colorWhite)}/>
+              </li>
             </ul>
           </div>
           <Button className={styles.button}>
