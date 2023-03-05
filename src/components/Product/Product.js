@@ -2,6 +2,7 @@ import styles from './Product.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
 
+
 const Product = props => {
   return (
     <article className={styles.product}>
