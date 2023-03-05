@@ -5,24 +5,29 @@ import PropTypes from 'prop-types';
 
 
 const Products = () => {
-  const [products]  = useState(productsData);
+  const [products] = useState(productsData);
 
   return (
     <section>
-      {/* <Product {...products[0]} />
-      <Product {...products[1]} /> */}
-       {products.map((products) => (
-        <Product key={products.name}{...products}/>
-       ))}
-      </section>
-      );
-    };
+      {products.map(product => (
+        <Product key={product.name} {...product} />
+      ))}
+    </section>
+  );
+};
 
-    Product.propTypes = {
-      id: PropTypes.number,
-      title: PropTypes.string,
-      name: PropTypes.string,
-      basePrice: PropTypes.number,
-    }
+Product.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  basePrice: PropTypes.number,
+  colors: PropTypes.arrayOf(PropTypes.string),
+  sizes: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      additionalPrice: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 export default Products;

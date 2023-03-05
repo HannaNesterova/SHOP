@@ -9,17 +9,22 @@ const Product = props => {
       <div className={styles.imageContainer}>
         <img 
           className={styles.image}
-          alt="Kodilla shirt"
+          alt={props.title}
           src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--black.jpg`} />
       </div>
       <div>
         <header>
-          <h2 className={styles.name}>Kodilla shirt</h2>
-          <span className={styles.price}>Price: 20$</span>
+          <h2 className={styles.name}>{props.title}</h2>
+          <span className={styles.price}>Price: {props.basePrice}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
+            {/* <ul className={styles.choices}>
+              {props.sizes.map((size, index) => (
+                <li key={index}><button type="button" className={index === 0 ? styles.active : ''}>{size.name}</button></li>
+              ))}
+            </ul> */}
             <ul className={styles.choices}>
               <li><button type="button" className={styles.active}>S</button></li>
               <li><button type="button">M</button></li>
