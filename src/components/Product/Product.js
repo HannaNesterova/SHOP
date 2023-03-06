@@ -13,7 +13,7 @@ const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
 
-  const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-kodilla--${currentColor}.jpg`;
+  const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
 
   return (
     <article className={styles.product}>
