@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
+import OptionColor from '../OptionColor/OptionColor';
 
 
 
@@ -32,16 +33,8 @@ const Product = props => {
           </div>
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
-            <ul className={styles.choices}>
             <OptionSize />
-              <li>
-                <button type='button' className={clsx(styles.colorWhite, styles.active)}/>
-              </li>
-              <li><button type='button' className={clsx(styles.colorRed)}/>
-              </li>
-              <li><button type='button' className={clsx(styles.colorBlack)}/>
-              </li>
-            </ul>
+            <OptionColor />
           </div>
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
