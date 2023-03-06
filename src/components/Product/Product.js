@@ -29,13 +29,18 @@ const Product = props => {
         </header>
         <form>
           <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>Sizes</h3>
-
+            <OptionSize
+              sizes={props.sizes}
+              currentSize={currentSize}
+              setCurrentSize={setCurrentSize}
+            />
           </div>
           <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>Colors</h3>
-            <OptionSize />
-            <OptionColor />
+            <OptionColor
+              colors={props.colors}
+              currentColor={currentColor}
+              setCurrentColor={setCurrentColor}
+            />
           </div>
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
