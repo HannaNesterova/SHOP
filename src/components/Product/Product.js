@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-//import clsx from 'clsx';
+import clsx from 'clsx';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
@@ -13,6 +13,7 @@ const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
 
+  const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-kodilla--${currentColor}.jpg`;
 
   return (
     <article className={styles.product}>
@@ -20,7 +21,7 @@ const Product = props => {
         <img 
           className={styles.image}
           alt={props.title}
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--black.jpg`} />
+          src={imageSrc} />
       </div>
       <div>
         <header>
@@ -28,20 +29,11 @@ const Product = props => {
           <span className={styles.price}>Price: {props.basePrice}$</span>
         </header>
         <form>
-          <div className={styles.sizes}>
-            <OptionSize
-              sizes={props.sizes}
-              currentSize={currentSize}
-              setCurrentSize={setCurrentSize}
-            />
-          </div>
-          <div className={styles.colors}>
-            <OptionColor
-              colors={props.colors}
-              currentColor={currentColor}
-              setCurrentColor={setCurrentColor}
-            />
-          </div>
+        <div className={styles.colors}>
+          <h3 className={styles.optionLabel}>Colors</h3>
+            <OptionSize sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} />
+            <OptionColor colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} />
+        </div>
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
           </Button>
@@ -58,6 +50,7 @@ Product.propTypes = {
   colors: PropTypes.arrayOf(PropTypes.string),
   sizes: PropTypes.arrayOf(PropTypes.object),
   basePrice: PropTypes.number,
+  currentColor: PropTypes.string,
 }
 
 export default Product;
