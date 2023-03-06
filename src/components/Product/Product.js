@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-import clsx from 'clsx';
+//import clsx from 'clsx';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
@@ -48,11 +48,11 @@ const Product = props => {
 
 
 Product.propTypes = {
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  sizes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  basePrice: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  colors: PropTypes.arrayOf(PropTypes.string),
+  sizes: PropTypes.arrayOf(PropTypes.object),
+  basePrice: PropTypes.number,
 }
 
 export default Product;
