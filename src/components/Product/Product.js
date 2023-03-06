@@ -2,12 +2,15 @@ import styles from './Product.module.scss';
 import clsx from 'clsx';
 import Button from '../Button/Button';
 import { useState } from 'react';
-
+import OptionSize from '../OptionSize/OptionSize';
 
 
 
 const Product = props => {
-const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
+
+  const [currentColor, setCurrentColor] = useState(colors[0]);
+  const [currentSize, setCurrentSize] = useState(sizes[0].name);
+
 
   return (
     <article className={styles.product}>
@@ -25,27 +28,18 @@ const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
         <form>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
-             <ul className={styles.choices}>
-              {props.sizes.map((size) => (
-                <li key={size.name}>
-                  <Button type="button" 
-                    className={clsx(size.name === currentSize && styles.active)}
-                    onClick={() => setCurrentSize(size.name)}
-                    >{size.name}
-                  </Button>
-                  </li>
-              ))}
-            </ul> 
+
           </div>
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
+            <OptionSize />
               <li>
-                <button type='button' className={clsx(styles.colorBlack, styles.active)}/>
+                <button type='button' className={clsx(styles.colorWhite, styles.active)}/>
               </li>
               <li><button type='button' className={clsx(styles.colorRed)}/>
               </li>
-              <li><button type='button' className={clsx(styles.colorWhite)}/>
+              <li><button type='button' className={clsx(styles.colorBlack)}/>
               </li>
             </ul>
           </div>
@@ -57,5 +51,14 @@ const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
     </article>
   )
 };
+
+
+Product.propTypes = {
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  basePrice: PropTypes.number.isRequired,
+}
 
 export default Product;
