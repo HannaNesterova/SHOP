@@ -8,7 +8,7 @@ const OptionSize = ({ sizes, currentSize, setCurrentSize}) => {
 		<div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              {props.sizes.map(size => 
+              {sizes.map(size => 
               <li key={size.name}><button type="button" onClick={()=>{setCurrentSize(size.name)}} className={clsx(size.name === currentSize && styles.active)}>{size.name}
               </button>
               </li>)}  

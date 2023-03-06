@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
+import PropTypes from 'prop-types';
 
 
 

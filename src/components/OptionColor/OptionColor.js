@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 import styles from "./OptionColor.module.scss";
-import PropTypes from 'prop-types';
+
 
 const OptionColor = (props) => {
-
+    const prepareColorClassName = color => {
+        return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
+      }
+    
     return(
         <ul className={styles.choices} onClick={props.addActive}>
         {props.colors.map(color =>
