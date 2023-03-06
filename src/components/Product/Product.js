@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 
 const Product = props => {
 
-  const [currentColor, setCurrentColor] = useState(colors[0]);
-  const [currentSize, setCurrentSize] = useState(sizes[0].name);
+  const [currentColor, setCurrentColor] = useState(props.colors[0]);
+  const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
 
 
   return (
