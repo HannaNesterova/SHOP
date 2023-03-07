@@ -1,7 +1,7 @@
 import styles from './Product.module.scss';
 //import clsx from 'clsx';
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 import PropTypes from 'prop-types';
@@ -15,24 +15,19 @@ const Product = props => {
    const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
   //const [price, setPrice] = useState (props.basePrice);
 
-  const getPrice = () => {
+  const getPrice = useMemo(() => {
     const foundSize = props.sizes.find(element => element.name === currentSize);
     return (props.basePrice + foundSize.additionalPrice);
-  };
-  //const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
+  }, [props.basePrice, props.sizes, currentSize]);
+
   return (
     <article className={styles.product}>
       <ProductImage currentColor={currentColor} title={props.title} name={props.name} />
-      {/* <div className={styles.imageContainer}>
-        <img 
-          className={styles.image}
-          alt={props.title}
-          src={imageSrc} />
-      </div> */}
+
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price: {getPrice()}$</span>
+          <span className={styles.price}>Price: {getPrice}$</span>
         </header>
 
          <form>
