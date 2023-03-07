@@ -5,16 +5,11 @@ import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 import PropTypes from 'prop-types';
-import ProductForm from '../Form/ProductForm';
-
-
-
 
 const Product = props => {
 
-  const [currentColor, setCurrentColor] = useState(props.colors[0]);
-  const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
-
+   const [currentColor, setCurrentColor] = useState(props.colors[0]);
+   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
   //const [price, setPrice] = useState (props.basePrice);
 
   const getPrice = () => {
@@ -24,6 +19,18 @@ const Product = props => {
 
   const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
 
+  const addToCart = (e) => {
+    e.preventDefault();
+    const foundSize = props.sizes.find(element => element.name === currentSize);
+    const product = {
+      name: props.title,
+      size: props.currentSize,
+      price: getPrice(),
+      color: props.currentColor,
+      additionalPrice: foundSize.additionalPrice
+    };
+    console.log(product);
+  }
 
   return (
     <article className={styles.product}>
@@ -41,14 +48,12 @@ const Product = props => {
         <form>
         <div className={styles.colors}>
           <h3 className={styles.optionLabel}>Colors</h3>
-            <ProductForm name={props.title} price={props.price} setPriceFunc={props.setPriceFunc} />
             <OptionSize sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} />
             <OptionColor colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} />
         </div>
-          <Button className={styles.button}>
+          <Button className={styles.button} onClick={addToCart}>
             <span className="fa fa-shopping-cart" />
           </Button>
-          
         </form>
       </div>
     </article>
