@@ -6,6 +6,7 @@ import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 import PropTypes from 'prop-types';
 
+
 const Product = props => {
 
    const [currentColor, setCurrentColor] = useState(props.colors[0]);
@@ -17,20 +18,10 @@ const Product = props => {
     return (props.basePrice + foundSize.additionalPrice);
   };
 
+  
   const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
 
-  const addToCart = (e) => {
-    e.preventDefault();
-    const foundSize = props.sizes.find(element => element.name === currentSize);
-    const product = {
-      name: props.title,
-      size: props.currentSize,
-      price: getPrice(),
-      color: props.currentColor,
-      additionalPrice: foundSize.additionalPrice
-    };
-    console.log(product);
-  }
+
 
   return (
     <article className={styles.product}>
@@ -51,7 +42,7 @@ const Product = props => {
             <OptionSize sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} />
             <OptionColor colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} />
         </div>
-          <Button className={styles.button} onClick={addToCart}>
+          <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
           </Button>
         </form>
