@@ -5,6 +5,7 @@ import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 import PropTypes from 'prop-types';
+import ProductForm from '../Form/ProductForm';
 
 
 
@@ -17,10 +18,9 @@ const Product = props => {
   //const [price, setPrice] = useState (props.basePrice);
 
   const getPrice = () => {
-    const foundSize = props.sizes.find(element => element.name === currentSize)
+    const foundSize = props.sizes.find(element => element.name === currentSize);
     return (props.basePrice + foundSize.additionalPrice);
   };
-
 
   const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
 
@@ -41,12 +41,14 @@ const Product = props => {
         <form>
         <div className={styles.colors}>
           <h3 className={styles.optionLabel}>Colors</h3>
+            <ProductForm name={props.title} price={props.price} setPriceFunc={props.setPriceFunc} />
             <OptionSize sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} />
             <OptionColor colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} />
         </div>
           <Button className={styles.button}>
             <span className="fa fa-shopping-cart" />
           </Button>
+          
         </form>
       </div>
     </article>
