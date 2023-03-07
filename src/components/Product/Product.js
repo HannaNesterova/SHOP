@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-import clsx from 'clsx';
+//import clsx from 'clsx';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
@@ -8,12 +8,22 @@ import PropTypes from 'prop-types';
 
 
 
+
 const Product = props => {
 
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
 
+  //const [price, setPrice] = useState (props.basePrice);
+
+  const getPrice = () => {
+    const foundSize = props.sizes.find(element => element.name === currentSize)
+    return (props.basePrice + foundSize.additionalPrice);
+  };
+
+
   const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
+
 
   return (
     <article className={styles.product}>
@@ -26,7 +36,7 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price: {props.basePrice}$</span>
+          <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
         <form>
         <div className={styles.colors}>
