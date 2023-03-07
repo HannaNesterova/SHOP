@@ -1,5 +1,6 @@
 import styles from './Button.module.scss';
 import clsx from 'clsx';
+import OptionSize from '../OptionSize/OptionSize';
 
 
 
@@ -7,14 +8,14 @@ const Button = (props) => {
 
     const addToCart = (e) => {
         e.preventDefault();
-        //const foundSize = props.sizes.find(element => element.name === props.currentSize);
-          const product = {
-            name: props.title,
-            size: props.currentSize,
-            //price: getPrice(),
-            color: props.currentColor,
-            //price: props.basePrice + foundSize.additionalPrice
-         }
+        const price = props.basePrice + OptionSize;
+        const product = {
+          name: props.title,
+          size: props.currentSize,
+          basePrice: props.basePrice,
+          color: props.currentColor,
+          price: price,
+        }
           console.log(product);
         
       }
@@ -26,8 +27,7 @@ const Button = (props) => {
     return (
         <button
             type={props.type}
-            className={clsx(styles.button, props.className)}
-            onClick={handleClick}
+            className={clsx(styles.button, props.className)} onClick={handleClick}
         >
             {props.children}
         </button>

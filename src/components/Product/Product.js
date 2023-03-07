@@ -5,6 +5,8 @@ import { useState } from 'react';
 import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 import PropTypes from 'prop-types';
+import ProductImage from '../ProductImage/ProductImage';
+
 
 
 const Product = props => {
@@ -17,40 +19,42 @@ const Product = props => {
     const foundSize = props.sizes.find(element => element.name === currentSize);
     return (props.basePrice + foundSize.additionalPrice);
   };
-
-  
-  const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
-
-
-
+  //const imageSrc = `${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`;
   return (
     <article className={styles.product}>
-      <div className={styles.imageContainer}>
+      <ProductImage currentColor={currentColor} title={props.title} name={props.name} />
+      {/* <div className={styles.imageContainer}>
         <img 
           className={styles.image}
           alt={props.title}
           src={imageSrc} />
-      </div>
+      </div> */}
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
-        <form>
+
+         <form>
         <div className={styles.colors}>
           <h3 className={styles.optionLabel}>Colors</h3>
             <OptionSize sizes={props.sizes} currentSize={currentSize} setCurrentSize={setCurrentSize} />
             <OptionColor colors={props.colors} currentColor={currentColor} setCurrentColor={setCurrentColor} />
         </div>
-          <Button className={styles.button}>
+          <Button className={styles.button}
+            title={props.title}
+            currentSize={currentSize}
+            currentColor={currentColor}
+            basePrice={props.basePrice}
+            prise={getPrice}
+          >
             <span className="fa fa-shopping-cart" />
           </Button>
-        </form>
+        </form> 
       </div>
     </article>
   )
 };
-
 
 Product.propTypes = {
   name: PropTypes.string,
