@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from "./ProductImage.module.scss";
 
 const ProductImage = (props) => {
@@ -10,6 +12,12 @@ const ProductImage = (props) => {
       />
     </div>
   )
+}
+
+ProductImage.propTypes = {
+  currentColor: PropTypes.string,
+  title: PropTypes.string,
+  name: PropTypes.string,
 }
 
 export default ProductImage;

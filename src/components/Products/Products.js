@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import productsData from '../../data/products';
 import Product from '../Product/Product';
-import PropTypes from 'prop-types';
+
 
 
 const Products = () => {

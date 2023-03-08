@@ -1,37 +1,30 @@
-import styles from './Button.module.scss';
 import clsx from 'clsx';
-import OptionSize from '../OptionSize/OptionSize';
+import PropTypes  from 'prop-types';
+
+import styles from './Button.module.scss';
+
+
 
 
 
 const Button = (props) => {
 
-    const addToCart = (e) => {
-        e.preventDefault();
-        const price = props.basePrice + OptionSize;
-        const product = {
-          name: props.title,
-          size: props.currentSize,
-          basePrice: props.basePrice,
-          color: props.currentColor,
-          price: price,
-        }
-          console.log(product);
-        
-      }
-
-    const handleClick = (event) => {
-        addToCart(event);
-    };
-
     return (
         <button
             type={props.type}
-            className={clsx(styles.button, props.className)} onClick={handleClick}
+            className={clsx(styles.button, props.className)} 
+            onClick={props.onClick}
         >
             {props.children}
         </button>
     );
 };
+
+Button.propTypes ={
+    type: PropTypes.string,
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.node,
+}
 
 export default Button;

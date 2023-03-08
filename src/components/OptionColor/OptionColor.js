@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
+
 import styles from "./OptionColor.module.scss";
 
 const OptionColor = ({ colors = [], currentColor, setCurrentColor }) => {
@@ -27,5 +29,10 @@ const OptionColor = ({ colors = [], currentColor, setCurrentColor }) => {
 OptionColor.defaultProps = {
   colors: [],
 };
+OptionColor.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.string),
+  currentColor: PropTypes.string,
+  setCurrentColor: PropTypes.func,
+}
 
 export default OptionColor;
