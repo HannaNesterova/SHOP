@@ -24,6 +24,7 @@ const Product = props => {
 
   useMemo(() => {
     getPrice();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price, currentColor, currentSize]);
 
   const addToCart = (e) => {
